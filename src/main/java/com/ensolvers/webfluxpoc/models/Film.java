@@ -1,12 +1,14 @@
 package com.ensolvers.webfluxpoc.models;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Table(name = "film")
 public class Film {
   @Id
@@ -23,5 +25,7 @@ public class Film {
   private String rating;
   private String specialFeatures;
   private LocalDateTime lastUpdate;
+
+  public Film() {}
 
 }

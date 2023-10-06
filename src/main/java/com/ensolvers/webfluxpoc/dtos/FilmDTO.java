@@ -17,6 +17,9 @@ public class FilmDTO {
   private String rating;
   private String specialFeatures;
 
+  public FilmDTO() {
+  }
+
   public static FilmDTO toDto(Film film) {
     FilmDTO dto = new FilmDTO();
     dto.setTitle(film.getTitle());
