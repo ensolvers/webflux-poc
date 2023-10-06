@@ -10,18 +10,18 @@ import java.time.LocalDateTime;
 @Table(name = "film")
 public class Film {
   @Id
-  public Long filmId;
-  public String title;
-  public String description;
-  public Integer releaseYear;
-  public Long languageId;
-  public Long originalLanguageId;
-  public Integer rentalDuration;
-  public Integer rentalRate;
-  public Integer length;
-  public Double replacementCost;
-  public String rating;
-  public String specialFeatures;
-  public LocalDateTime lastUpdate;
+  private Long filmId;
+  private String title;
+  private String description;
+  private Integer releaseYear;
+  private Long languageId;
+  private Long originalLanguageId;
+  private Integer rentalDuration;
+  private Integer rentalRate;
+  private Integer length;
+  private Double replacementCost;
+  private String rating;
+  private String specialFeatures;
+  private LocalDateTime lastUpdate;
 
 }

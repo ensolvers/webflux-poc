@@ -15,12 +15,12 @@ public class FilmsService {
     this.repository = repository;
   }
 
-  @Transactional(readOnly = true)
   public Mono<Film> getById(Long id) {
-    return this.repository.findById(id);
+    return this.repository
+      .findById(id)
+      .switchIfEmpty(Mono.error(new Exception("Film Not Found")));
   }
 
-  @Transactional(readOnly = true)
   public Flux<Film> getAll() {
     return this.repository.findAll();
   }
