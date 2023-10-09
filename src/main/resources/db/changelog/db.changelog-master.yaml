@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - property:
+      name: type.id
+      value: bigint(20)
+      dbms: mysql
+  - property:
+      name: type.id
+      value: int
+      dbms: postgresql
+  - property:
+      name: type.text
+      value: varchar(4000)
+      dbms: postgresql
+  - property:
+      name: type.text
+      value: text
+      dbms: mysql
+  - property:
+      name: type.bool
+      value: varchar(1)
+      dbms: postgresql
+  - property:
+      name: type.bool
+      value: boolean
+      dbms: mysql
+  - property:
+      name: type.externalId
+      value: varchar(64)
+  - includeAll:
+      path: migrations/
+      relativeToChangelogFile: true
+ 
