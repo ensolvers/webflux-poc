@@ -9,9 +9,8 @@ import java.util.Objects;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.http;
-import static io.gatling.javaapi.http.HttpDsl.status;
 
-public class WebFluxGetAllSimulation extends Simulation {
+public class WebFluxGetByIdSimulationWithSleep extends Simulation {
   Integer users = Integer.getInteger("users", 1);
   Integer rampUsersDuration = Objects.requireNonNull(Integer.getInteger("rampUsersDuration", null), "Environment variable required: rampUsersDuration (seconds)");
   Env env = Env.valueOf(Objects.requireNonNull(System.getProperty("env"), "Environment variable required: env").toUpperCase());
@@ -22,13 +21,13 @@ public class WebFluxGetAllSimulation extends Simulation {
     .acceptLanguageHeader("en-US,en;q=0.5")
     .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0");
 
-  ScenarioBuilder scn = scenario("WebFluxGetTest")
-    .repeat(iterations).on(
+  ScenarioBuilder scn = scenario("WebFluxGetTestWithSleep")
+    .repeat(iterations)
+    .on(
       exec(
-        http("getAll")
-          .get("/api/films")
-          .check(status().is(200)))
-        .pause(5)
+        http("getByIdWithSleep")
+          .get("/api/dynamic-properties/sleep/1"))
+        .pause(1)
     );
 
   {
