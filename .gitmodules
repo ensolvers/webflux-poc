@@ -1,0 +1,3 @@
+[submodule "submodules/ensolvers-core"]
+	path = submodules/ensolvers-core
+	url = git@github.com:ensolvers/ensolvers-core.git

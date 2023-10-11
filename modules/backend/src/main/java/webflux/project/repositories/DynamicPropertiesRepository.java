@@ -1,6 +1,6 @@
 package webflux.project.repositories;
 
-import webflux.project.models.DynamicProperty;
+import com.ensolvers.core.common.model.DynamicProperty;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 import org.springframework.stereotype.Repository;

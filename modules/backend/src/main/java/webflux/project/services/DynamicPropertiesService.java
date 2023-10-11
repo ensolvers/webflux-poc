@@ -1,6 +1,6 @@
 package webflux.project.services;
 
-import webflux.project.models.DynamicProperty;
+import com.ensolvers.core.common.model.DynamicProperty;
 import webflux.project.repositories.DynamicPropertiesRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

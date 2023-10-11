@@ -1,6 +1,6 @@
 package webflux.project.controllers;
 
-import webflux.project.models.DynamicProperty;
+import com.ensolvers.core.common.model.DynamicProperty;
 import webflux.project.services.DynamicPropertiesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class DynamicPropertiesController {
 
   @ExceptionHandler
   public ResponseEntity<String> handle(Exception e) {
-    log.error("Error: [%s]".formatted(e.getMessage()));
+    log.error("Error: [" + e.getMessage() + "]");
     return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
