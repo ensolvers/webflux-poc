@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_user_role" global="false"/>
+    <changeSet  author="Diego Prince"  id="00063_update_legacy_role_key_value_of_${table.name}_table">
+        <update tableName="${table.name}">
+            <column name="legacy_role_key" value="ROLE_SUPERADMIN"/>
+            <where>name='superadmin'</where>
+        </update>
+        <update tableName="${table.name}">
+            <column name="legacy_role_key" value="ROLE_ADMIN"/>
+            <where>name='admin'</where>
+        </update>
+        <update tableName="${table.name}">
+            <column name="legacy_role_key" value="ROLE_USER"/>
+            <where>name='user'</where>
+        </update>
+        <update tableName="${table.name}">
+            <column name="legacy_role_key" value="ROLE_SUPPORT"/>
+            <where>name='support'</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

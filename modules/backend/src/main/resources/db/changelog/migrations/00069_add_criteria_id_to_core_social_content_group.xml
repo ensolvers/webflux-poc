@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_social_content_group" global="false"/>
+    <changeSet  author="Diego Prince"  id="00069_add_criteria_id_to_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Columns criteria_id already exist">
+            <not>
+                <columnExists tableName="${table.name}" columnName="criteria_id" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="${table.name}">
+            <column name="criteria_id" type="${type.id}" remarks="Group">
+                <constraints nullable="true"
+                             foreignKeyName="FK_${table.name}_core_group_criteria"
+                             referencedTableName="core_group_criteria"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

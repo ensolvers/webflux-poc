@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <property name="table.name" value="core_user_admin_group" global="false"/>
+
+    <changeSet author="Diego Prince" id="00071_create_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table ${table.name} already exists">
+            <not>
+                <tableExists tableName="${table.name}"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${table.name}" >
+            <column name="user_id" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="core_user_admin_group_PK"
+                             foreignKeyName="FK_core_user_admin_group__user_id" referencedTableName="core_user" referencedColumnNames="id"/>
+            </column>
+            <column name="group_id" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="core_user_admin_group_PK"
+                             foreignKeyName="FK_core_user_admin_group__group_id" referencedTableName="core_social_content_group" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

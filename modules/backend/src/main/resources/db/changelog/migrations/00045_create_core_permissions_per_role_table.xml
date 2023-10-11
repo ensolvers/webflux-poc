@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <property name="table.name" value="core_permissions_per_role" global="false"/>
+
+    <changeSet author="Joaquin Franciscutti" id="00045_create_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table ${table.name} already exists">
+            <not>
+                <tableExists tableName="${table.name}"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${table.name}">
+            <column name="user_role_id" type="bigint(20)">
+                <constraints nullable="false"
+                             primaryKey="true" primaryKeyName="core_permissions_per_role_PK"
+                             foreignKeyName="FK_core_permissions_per_role__core_user_role_id"
+                             referencedTableName="core_user_role" referencedColumnNames="id"/>
+            </column>
+            <column name="permission_id" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="core_permissions_per_role_PK"
+                             foreignKeyName="FK_core_permissions_per_role__permission_id"
+                             referencedTableName="core_permission" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

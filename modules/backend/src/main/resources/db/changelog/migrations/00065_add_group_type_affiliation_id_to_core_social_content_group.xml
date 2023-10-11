@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_social_content_group" global="false"/>
+    <changeSet  author="Cesar Salazar"  id="00065_add_group_type_affiliation_id_to_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Columns group_type already exist">
+            <not>
+                <columnExists tableName="${table.name}" columnName="group_type" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="${table.name}">
+            <column name="group_type" type="VARCHAR(32)" defaultValue="group" remarks="Group" />
+
+            <!-- Affiliate Group -->
+            <column name="affiliation_id" type="${type.id}" remarks="AffiliateGroup">
+                <constraints foreignKeyName="FK_${table.name}_core_social_affiliation"
+                             referencedTableName="core_social_affiliation"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_object_changelog" global="false"/>
+    <property  name="idx.name"  value="core_object_changelog_id_idx" global="false"/>
+
+    <changeSet  author="José Matías Rivero"  id="00041_alter_id_type_in_object_changelog">
+        <modifyDataType
+                         columnName="object_id"
+                         newDataType="varchar(255)"
+                         tableName="${table.name}"/>
+        <createIndex tableName="${table.name}" indexName="${idx.name}">
+            <column name="object_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

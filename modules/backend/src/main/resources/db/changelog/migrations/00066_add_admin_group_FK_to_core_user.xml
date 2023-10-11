@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_user" global="false"/>
+
+    <changeSet  author="Cesar Salazar"  id="00066_add_admin_group_FK_to_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="admin_group_id column on ${table.name} already exist" >
+            <not>
+                <or>
+                    <columnExists tableName="${table.name}" columnName="admin_group_id" />
+                </or>
+            </not>
+        </preConditions>
+        <addColumn tableName="${table.name}">
+            <column name="admin_group_id" type="${type.id}">
+                <constraints foreignKeyName="FK_${table.name}_core_social_content_group"
+                             referencedTableName="core_social_content_group"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

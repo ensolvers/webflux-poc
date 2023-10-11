@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_user" global="false"/>
+    <property  name="idx.name"  value="username_idx" global="false"/>
+
+    <changeSet  author="Martin Villarreal"  id="00051_add_${idx.name}_to_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Index ${idx.name} already exists in ${table.name} table" >
+            <not>
+                <indexExists tableName="${table.name}" indexName="${idx.name}" />
+            </not>
+        </preConditions>
+        <createIndex tableName="${table.name}" indexName="${idx.name}">
+            <column name="username"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

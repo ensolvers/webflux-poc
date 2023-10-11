@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <property name="table.name" value="core_role_access" global="false"/>
+    <changeSet id="create-core-role-access" author="Juan Pablo Saucedo">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table ${table.name} already exists">
+            <not>
+                <tableExists tableName="${table.name}"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${table.name}">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="user_role_id" type="bigint(20)">
+                <constraints nullable="false"
+                             foreignKeyName="FK_${table.name}__core_user_role_id"
+                             referencedTableName="core_user_role" referencedColumnNames="id"/>
+            </column>
+            <column name="user_id" type="bigint(20)">
+                <constraints nullable="false"
+                             foreignKeyName="FK_${table.name}__core_user_id"
+                             referencedTableName="core_user" referencedColumnNames="id"
+                />
+            </column>
+            <column name="object_external_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="${table.name}" indexName="idx_unique_user_role_object" unique="true">
+            <column name="user_id"/>
+            <column name="user_role_id"/>
+            <column name="object_external_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

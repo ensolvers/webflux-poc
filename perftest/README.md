@@ -11,5 +11,5 @@ mvn gatling:test \
 ```shell
 mvn gatling:test \
   -Dgatling.simulationClass='webflux.WebFluxGetByIdSimulationWithSleep' \
-  -Denv='DEV' -Dusers=5000 -Diterations=100 -DrampUsersDuration=10
+  -Denv='DEV' -Dusers=5000 -Diterations=500 -DrampUsersDuration=10
 ```

@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_social_content_group_user_relation" global="false"/>
+
+    <changeSet  author="Daniel Ramos"  id="00054_create_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table ${table.name} already exists" >
+            <not> <tableExists tableName="${table.name}" /> </not>
+        </preConditions>
+        
+        <createTable tableName="${table.name}" >
+            <column name="id" type="${type.id}" autoIncrement="true" remarks="GenericModel">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="${table.name}_PK" />
+            </column>
+
+            <column name="content_group_id" type="${type.id}">
+                <constraints foreignKeyName="fk_content_group" references="core_social_content_group(id)"/>
+            </column>
+            
+            <column name="user_id" type="${type.id}">
+                <constraints foreignKeyName="fk_user" references="core_user(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

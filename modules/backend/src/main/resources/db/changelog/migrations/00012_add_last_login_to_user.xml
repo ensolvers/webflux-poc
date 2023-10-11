@@ -1,0 +1,26 @@
+<!--liquibase formatted sql-->
+<!--changeset hipolito:12-->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro             http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <property  name="table.name"  value="core_user" global="false"/>
+
+    <changeSet  author="hipolito"  id="00012_add_last_login_to_${table.name}_table">
+        <preConditions onFail="MARK_RAN" onFailMessage="Column ${table.name}:last_login already exists" >
+            <not> <columnExists tableName="${table.name}" columnName="last_login" /> </not>
+        </preConditions>
+        <addColumn  tableName="${table.name}" >
+            <column  name="last_login" type="TIMESTAMP"> </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
+
+
+
+
